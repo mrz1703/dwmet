@@ -1,0 +1,1496 @@
+{
+    "annotations": {
+      "list": [
+        {
+          "$$hashKey": "object:1292",
+          "builtIn": 1,
+          "datasource": "-- Grafana --",
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "gnetId": null,
+    "graphTooltip": 0,
+    "id": 35,
+    "iteration": 1523032122763,
+    "links": [],
+    "panels": [
+      {
+        "columns": [],
+        "datasource": "influxdb-telegraf",
+        "description": "Last status code http",
+        "fontSize": "100%",
+        "gridPos": {
+          "h": 18,
+          "w": 7,
+          "x": 0,
+          "y": 0
+        },
+        "hideTimeOverride": false,
+        "id": 8,
+        "links": [],
+        "pageSize": null,
+        "scroll": true,
+        "showHeader": true,
+        "sort": {
+          "col": 0,
+          "desc": true
+        },
+        "styles": [
+          {
+            "$$hashKey": "object:4017",
+            "alias": "Time",
+            "dateFormat": "YYYY-MM-DD HH:mm:ss",
+            "link": false,
+            "pattern": "Time",
+            "type": "hidden"
+          },
+          {
+            "$$hashKey": "object:4018",
+            "alias": "",
+            "colorMode": null,
+            "colors": [
+              "rgba(245, 54, 54, 0.9)",
+              "rgba(237, 129, 40, 0.89)",
+              "rgba(50, 172, 45, 0.97)"
+            ],
+            "decimals": 2,
+            "pattern": "/.*/",
+            "thresholds": [],
+            "type": "number",
+            "unit": "short"
+          }
+        ],
+        "targets": [
+          {
+            "$$hashKey": "object:3426",
+            "alias": "$tag_address",
+            "groupBy": [
+              {
+                "params": [
+                  "1m"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "address"
+                ],
+                "type": "tag"
+              }
+            ],
+            "limit": "1",
+            "measurement": "web_metrics",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "http_code"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "address",
+                "operator": "=~",
+                "value": "/^$Site$/"
+              }
+            ]
+          }
+        ],
+        "title": "Status code",
+        "transform": "timeseries_to_rows",
+        "type": "table"
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "influxdb-telegraf",
+        "decimals": 2,
+        "description": "The total time, in seconds, that the full operation lasted. The time will be displayed with millisecond resolution.",
+        "fill": 1,
+        "gridPos": {
+          "h": 9,
+          "w": 17,
+          "x": 7,
+          "y": 0
+        },
+        "hideTimeOverride": false,
+        "id": 9,
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": true,
+          "hideEmpty": true,
+          "hideZero": false,
+          "max": true,
+          "min": false,
+          "rightSide": true,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "links": [],
+        "nullPointMode": "null",
+        "percentage": false,
+        "pointradius": 5,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "$$hashKey": "object:1609",
+            "alias": "$tag_address",
+            "groupBy": [
+              {
+                "params": [
+                  "10s"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "address"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "web_metrics",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "time_total"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "address",
+                "operator": "=~",
+                "value": "/^$Site$/"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Total",
+        "tooltip": {
+          "shared": true,
+          "sort": 2,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:1723",
+            "decimals": 2,
+            "format": "s",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:1724",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": false
+          }
+        ]
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "influxdb-telegraf",
+        "decimals": 2,
+        "description": "The time, in seconds, it took from the start until the TCP connect to the remote host (or proxy) was completed.",
+        "fill": 1,
+        "gridPos": {
+          "h": 9,
+          "w": 17,
+          "x": 7,
+          "y": 9
+        },
+        "hideTimeOverride": false,
+        "id": 2,
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": true,
+          "hideEmpty": true,
+          "hideZero": false,
+          "max": true,
+          "min": false,
+          "rightSide": true,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "links": [],
+        "nullPointMode": "null",
+        "percentage": false,
+        "pointradius": 5,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "$$hashKey": "object:1609",
+            "alias": "$tag_address",
+            "groupBy": [
+              {
+                "params": [
+                  "10s"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "address"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "web_metrics",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "time_connect"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "address",
+                "operator": "=~",
+                "value": "/^$Site$/"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Connect",
+        "tooltip": {
+          "shared": true,
+          "sort": 2,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:1723",
+            "decimals": 2,
+            "format": "s",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:1724",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": false
+          }
+        ]
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "influxdb-telegraf",
+        "decimals": 2,
+        "description": "The time, in seconds, it took from the start until the name resolving was completed.",
+        "fill": 1,
+        "gridPos": {
+          "h": 9,
+          "w": 12,
+          "x": 0,
+          "y": 18
+        },
+        "hideTimeOverride": false,
+        "id": 10,
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": true,
+          "hideEmpty": true,
+          "hideZero": false,
+          "max": true,
+          "min": false,
+          "rightSide": true,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "links": [],
+        "nullPointMode": "null",
+        "percentage": false,
+        "pointradius": 5,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "$$hashKey": "object:1609",
+            "alias": "$tag_address",
+            "groupBy": [
+              {
+                "params": [
+                  "10s"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "address"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "web_metrics",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "time_namelookup"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "address",
+                "operator": "=~",
+                "value": "/^$Site$/"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "NameLookup",
+        "tooltip": {
+          "shared": true,
+          "sort": 2,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:1723",
+            "decimals": 2,
+            "format": "s",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:1724",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": false
+          }
+        ]
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "influxdb-telegraf",
+        "decimals": 2,
+        "description": "The time, in seconds, it took from the start until the file transfer was just about to begin. This includes all pre-transfer commands and negotiations that are specific to the particular protocol(s) involved.",
+        "fill": 1,
+        "gridPos": {
+          "h": 9,
+          "w": 12,
+          "x": 12,
+          "y": 18
+        },
+        "hideTimeOverride": false,
+        "id": 12,
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": true,
+          "hideEmpty": true,
+          "hideZero": false,
+          "max": true,
+          "min": false,
+          "rightSide": true,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "links": [],
+        "nullPointMode": "null",
+        "percentage": false,
+        "pointradius": 5,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "$$hashKey": "object:1609",
+            "alias": "$tag_address",
+            "groupBy": [
+              {
+                "params": [
+                  "10s"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "address"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "web_metrics",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "time_pretransfer"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "address",
+                "operator": "=~",
+                "value": "/^$Site$/"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "PreTransfer",
+        "tooltip": {
+          "shared": true,
+          "sort": 2,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:1723",
+            "decimals": 2,
+            "format": "s",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:1724",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": false
+          }
+        ]
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "influxdb-telegraf",
+        "decimals": 2,
+        "description": "The time, in seconds, it took for all redirection steps include name lookup, connect, pretransfer and transfer before the final transaction was started. time_redirect shows the complete execution time for multiple redirections.",
+        "fill": 1,
+        "gridPos": {
+          "h": 9,
+          "w": 12,
+          "x": 0,
+          "y": 27
+        },
+        "hideTimeOverride": false,
+        "id": 13,
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": true,
+          "hideEmpty": true,
+          "hideZero": false,
+          "max": true,
+          "min": false,
+          "rightSide": true,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "links": [],
+        "nullPointMode": "null",
+        "percentage": false,
+        "pointradius": 5,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "$$hashKey": "object:1609",
+            "alias": "$tag_address",
+            "groupBy": [
+              {
+                "params": [
+                  "10s"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "address"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "web_metrics",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "time_redirect"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "address",
+                "operator": "=~",
+                "value": "/^$Site$/"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Redirect",
+        "tooltip": {
+          "shared": true,
+          "sort": 2,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:1723",
+            "decimals": 2,
+            "format": "s",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:1724",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": false
+          }
+        ]
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "influxdb-telegraf",
+        "decimals": 2,
+        "description": "The time, in seconds, it took from the start until the SSL/SSH/etc connect/handshake to the remote host was completed.",
+        "fill": 1,
+        "gridPos": {
+          "h": 9,
+          "w": 12,
+          "x": 12,
+          "y": 27
+        },
+        "hideTimeOverride": false,
+        "id": 11,
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": true,
+          "hideEmpty": true,
+          "hideZero": false,
+          "max": true,
+          "min": false,
+          "rightSide": true,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "links": [],
+        "nullPointMode": "null",
+        "percentage": false,
+        "pointradius": 5,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "$$hashKey": "object:1609",
+            "alias": "$tag_address",
+            "groupBy": [
+              {
+                "params": [
+                  "10s"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "address"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "web_metrics",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "time_appconnect"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "address",
+                "operator": "=~",
+                "value": "/^$Site$/"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "AppConnect",
+        "tooltip": {
+          "shared": true,
+          "sort": 2,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:1723",
+            "decimals": 2,
+            "format": "s",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:1724",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": false
+          }
+        ]
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "influxdb-telegraf",
+        "decimals": 2,
+        "description": "The time, in seconds, it took from the start until the first byte was just about to be transferred. This includes time_pretransfer and also the time the server needed to calculate the result.",
+        "fill": 1,
+        "gridPos": {
+          "h": 9,
+          "w": 12,
+          "x": 0,
+          "y": 36
+        },
+        "hideTimeOverride": false,
+        "id": 14,
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": true,
+          "hideEmpty": true,
+          "hideZero": false,
+          "max": true,
+          "min": false,
+          "rightSide": true,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "links": [],
+        "nullPointMode": "null",
+        "percentage": false,
+        "pointradius": 5,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "$$hashKey": "object:1609",
+            "alias": "$tag_address",
+            "groupBy": [
+              {
+                "params": [
+                  "10s"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "address"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "web_metrics",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "time_starttransfer"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "address",
+                "operator": "=~",
+                "value": "/^$Site$/"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "StartTransfer",
+        "tooltip": {
+          "shared": true,
+          "sort": 2,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:1723",
+            "decimals": 2,
+            "format": "s",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:1724",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": false
+          }
+        ]
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "influxdb-telegraf",
+        "decimals": 2,
+        "description": "The average download speed that curl measured for the complete  download.  Bytes  per second.",
+        "fill": 1,
+        "gridPos": {
+          "h": 9,
+          "w": 12,
+          "x": 12,
+          "y": 36
+        },
+        "hideTimeOverride": false,
+        "id": 15,
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": true,
+          "hideEmpty": true,
+          "hideZero": false,
+          "max": true,
+          "min": false,
+          "rightSide": true,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "links": [],
+        "nullPointMode": "null",
+        "percentage": false,
+        "pointradius": 5,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "$$hashKey": "object:1609",
+            "alias": "Download: $tag_address",
+            "groupBy": [
+              {
+                "params": [
+                  "10s"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "address"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "web_metrics",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "speed_download"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "address",
+                "operator": "=~",
+                "value": "/^$Site$/"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Download speed",
+        "tooltip": {
+          "shared": true,
+          "sort": 2,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:1723",
+            "decimals": null,
+            "format": "Bps",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:1724",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": false
+          }
+        ]
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "influxdb-telegraf",
+        "decimals": 2,
+        "description": "The average download speed that curl measured for the complete  download.  Bytes  per second.",
+        "fill": 1,
+        "gridPos": {
+          "h": 10,
+          "w": 24,
+          "x": 0,
+          "y": 45
+        },
+        "hideTimeOverride": false,
+        "id": 16,
+        "legend": {
+          "alignAsTable": true,
+          "avg": false,
+          "current": true,
+          "hideEmpty": true,
+          "hideZero": false,
+          "max": true,
+          "min": true,
+          "rightSide": true,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "links": [],
+        "nullPointMode": "null",
+        "percentage": false,
+        "pointradius": 5,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": true,
+        "steppedLine": false,
+        "targets": [
+          {
+            "$$hashKey": "object:1609",
+            "alias": "Download: $tag_address",
+            "groupBy": [
+              {
+                "params": [
+                  "10s"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "address"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "web_metrics",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "size_download"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "address",
+                "operator": "=~",
+                "value": "/^$Site$/"
+              }
+            ]
+          },
+          {
+            "$$hashKey": "object:7097",
+            "alias": "Header: $tag_address",
+            "groupBy": [
+              {
+                "params": [
+                  "10s"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "address"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "web_metrics",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "size_header"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "address",
+                "operator": "=~",
+                "value": "/^$Site$/"
+              }
+            ]
+          },
+          {
+            "$$hashKey": "object:7142",
+            "alias": "Request: $tag_address",
+            "groupBy": [
+              {
+                "params": [
+                  "10s"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "address"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "web_metrics",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "C",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "size_request"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "address",
+                "operator": "=~",
+                "value": "/^$Site$/"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Download/Header/Request size",
+        "tooltip": {
+          "shared": true,
+          "sort": 2,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:1723",
+            "decimals": null,
+            "format": "decbytes",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:1724",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": false
+          }
+        ]
+      }
+    ],
+    "refresh": false,
+    "schemaVersion": 16,
+    "style": "dark",
+    "tags": [],
+    "templating": {
+      "list": [
+        {
+          "allValue": null,
+          "current": {
+            "tags": [],
+            "text": "All",
+            "value": "$__all"
+          },
+          "datasource": "influxdb-telegraf",
+          "hide": 0,
+          "includeAll": true,
+          "label": null,
+          "multi": false,
+          "name": "Site",
+          "options": [
+            {
+              "$$hashKey": "object:3757",
+              "selected": true,
+              "text": "All",
+              "value": "$__all"
+            },
+            {
+              "$$hashKey": "object:3763",
+              "selected": false,
+              "text": "https://yandex.ru",
+              "value": "https://yandex.ru"
+            }
+          ],
+          "query": "show tag values with key = \"address\";",
+          "refresh": 0,
+          "regex": "",
+          "sort": 1,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        }
+      ]
+    },
+    "time": {
+      "from": "now-15m",
+      "to": "now"
+    },
+    "timepicker": {
+      "refresh_intervals": [
+        "5s",
+        "10s",
+        "30s",
+        "1m",
+        "5m",
+        "15m",
+        "30m",
+        "1h",
+        "2h",
+        "1d"
+      ],
+      "time_options": [
+        "5m",
+        "15m",
+        "1h",
+        "6h",
+        "12h",
+        "24h",
+        "2d",
+        "7d",
+        "30d"
+      ]
+    },
+    "timezone": "",
+    "title": "Web Metrics",
+    "uid": "9CXbVommz",
+    "version": 12
+  }

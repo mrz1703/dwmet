@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  dwmet:
+    build: 
+      context: .
+      dockerfile: docker/Dockerfile
+    environment:
+      APP_REFRESH_TIME: 10
+      APP_CHECK_TIMEOUT: 5
+      APP_INFLUXDB_HOST: "127.0.0.1:8086"
+      APP_INFLUXDB_DB: telegraf
+      APP_LIST_DOMAINNAME: "https://yandex.ru,https://google.com"
